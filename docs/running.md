@@ -76,14 +76,6 @@ Important parameters are:
 --phibase <path>
   Path to the PHI-base fasta dataset.
 
---pfam_hmm <path>
-  Path to already downloaded gzipped pfam HMM database
-  default: download the hmms
-
---pfam_dat <path>
-  Path to already downloaded gzipped pfam DAT database
-  default: download the DAT file
-
 --dbcan <path>
   Path to already downloaded gzipped dbCAN HMM database
   default: download the hmms
@@ -132,12 +124,6 @@ Important parameters are:
   In that case this flag isn't strictly necessary, but potentially useful
   for documenting what was run.
   THIS OPTION WILL BE REMOVED IN A FUTURE RELEASE.
-
---no_pfam
-  Don't download and/or run Pfam and Pfamscan. Downloading Pfam is quite slow,
-  even though it isn't particularly big. Sometimes the servers are down too.
-  You might also run your proteomes through something like interproscan, in which
-  case you might not need these results. This means you can keep going without it.
 
 --no_dbcan
   Don't download and/or run searches against the dbCAN CAZyme dataset.
@@ -220,7 +206,7 @@ Those starting with two hyphens `--` are Predector defined parameters.
 In the pipeline ranking output tables we also provide a manual (i.e. not machine learning) ranking score for both effectors `manual_effector_score` and secretion `manual_secretion_score`.
 This was provided so that you could customise the ranking if the ML ranker isn't what you want.
 
-> NOTE: If you decide not to run specific analyses (e.g. signalp6 or Pfam), this may affect comparability between different runs of the pipeline.
+> NOTE: If you decide not to run specific analyses (e.g. signalp6), this may affect comparability between different runs of the pipeline.
 
 These scores are computed by a relatively simple linear function weighting features in the ranking table.
 You can customise the weights applied to the features from the command line.
@@ -239,7 +225,6 @@ It is composed of four other columns like this:
 has_effector_match = has_phibase_effector_match
                   or (effector_matches != '.')
                   or has_dbcan_virulence_match
-                  or has_pfam_virulence_match
 ```
 
 
@@ -383,7 +368,6 @@ In the config files, you can select these tasks by label.
 | software | `deepredeff`     |                                                                                                                      |
 | software | `emboss`         |                                                                                                                      |
 | software | `hmmer3`         |                                                                                                                      |
-| software | `pfamscan`       |                                                                                                                      |
 | software | `mmseqs`         |                                                                                                                      |
 
 
@@ -416,9 +400,9 @@ If you get an error about missing git tags when running either of the first two 
 I suggest keeping copies of the proprietary dependencies handy in a folder or archive, and just building and removing the container/environment as you need it.
 
 
-### Providing pre-downloaded Pfam, PHI-base, and dbCAN datasets.
+### Providing pre-downloaded PHI-base, and dbCAN datasets.
 
-Sometimes the Pfam or dbCAN servers can be a bit slow for downloads, and are occasionally unavailable which will cause the pipeline to fail.
+Sometimes the dbCAN servers can be a bit slow for downloads, and are occasionally unavailable which will cause the pipeline to fail.
 You may want to keep the downloaded databases to reuse them (or pre-download them).
 
 If you've already run the pipeline once, they'll be in the `results` folder (unless you specified `--outdir`) so you can do:
@@ -429,8 +413,6 @@ nextflow run \
   -profile test \
   -resume ccdmb/predector \
   --phibase phi-base_current.fas \
-  --pfam_hmm downloads/Pfam-A.hmm.gz \
-  --pfam_dat downloads/Pfam-A.hmm.dat.gz \
   --dbcan downloads/dbCAN.txt \
   --effectordb downloads/effectordb.hmm.gz
 ```
@@ -438,8 +420,7 @@ nextflow run \
 This will skip the download step at the beginning and just use those files, which saves a few minutes.
 
 You can also download the files from:
-- http://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/ `Pfam-A.hmm.gz` and `Pfam-A.hmm.dat.gz`
-- https://bcb.unl.edu/dbCAN2/download/ `dbCAN-HMMdb-V10.txt`
+- https://bcb.unl.edu/dbCAN2/download/ `dbCAN-HMMdb-V13.txt`
 - http://www.phi-base.org/downloadLink.htm OR https://github.com/PHI-base/data/tree/master/releases (only need the `.fas` fasta file).
 - https://doi.org/10.6084/m9.figshare.16973665 `effectordb.hmm.gz`
 

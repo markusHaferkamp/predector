@@ -68,11 +68,11 @@ Where you have a choice between versions for different operating systems, you sh
 - [SignalP](https://services.healthtech.dtu.dk/services/SignalP-3.0/9-Downloads.php#) version 3.0
 - [SignalP](https://services.healthtech.dtu.dk/services/SignalP-4.1/9-Downloads.php#) version 4.1g
 - [SignalP](https://services.healthtech.dtu.dk/services/SignalP-5.0/9-Downloads.php#) version 5.0b
-- [SignalP](https://services.healthtech.dtu.dk/services/SignalP-6.0/9-Downloads.php#) version 6.0g "fast" **\*currently optional**
+- [SignalP](https://services.healthtech.dtu.dk/services/SignalP-6.0/9-Downloads.php#) version 6.0h "fast" **\*currently optional**
 - [TargetP](https://services.healthtech.dtu.dk/services/TargetP-2.0/9-Downloads.php#) version 2.0
 - [DeepLoc](https://services.healthtech.dtu.dk/services/DeepLoc-1.0/9-Downloads.php#) version 1.0
 - [TMHMM](https://services.healthtech.dtu.dk/services/TMHMM-2.0/9-Downloads.php#) version 2.0c
-- [Phobius](http://software.sbc.su.se/cgi-bin/request.cgi?project=phobius) version 1.01
+- [Phobius](https://software.sbc.su.se/phobius.html) version 1.01
 
 Note that DTU (SignalP etc) don't keep older patches and minor versions available.
 If the specified version isn't available to download, another version with the same major number _should_ be fine.
@@ -102,11 +102,11 @@ curl -s "https://raw.githubusercontent.com/ccdmb/predector/1.2.7/install.sh" \
     -3 signalp-3.0.Linux.tar.Z \
     -4 signalp-4.1g.Linux.tar.gz \
     -5 signalp-5.0b.Linux.tar.gz \
-    -6 signalp-6.0g.fast.tar.gz \
+    -6 signalp-6.0h.fast.tar.gz \
     -t targetp-2.0.Linux.tar.gz \
     -d deeploc-1.0.All.tar.gz \
     -m tmhmm-2.0c.Linux.tar.gz \
-    -p phobius101_linux.tar.gz
+    -p phobius101_linux.tgz
 ```
 
 This will create the conda environment (named `predector`), or the docker (tagged `predector/predector:1.2.7`) or singularity (file `./predector.sif`) containers.
@@ -219,10 +219,10 @@ Modify the source tar archive filenames in the commands if necessary.
 signalp3-register signalp-3.0.Linux.tar.Z \
 && signalp4-register signalp-4.1g.Linux.tar.gz \
 && signalp5-register signalp-5.0b.Linux.tar.gz \
-&& signalp6-register signalp-6.0g.fast.tar.gz \
+&& signalp6-register signalp-6.0h.fast.tar.gz \
 && targetp2-register targetp-2.0.Linux.tar.gz \
 && deeploc-register deeploc-1.0.All.tar.gz \
-&& phobius-register phobius101_linux.tar.gz \
+&& phobius-register phobius101_linux.tgz \
 && tmhmm2-register tmhmm-2.0c.Linux.tar.gz
 ```
 
@@ -243,9 +243,9 @@ curl -s https://raw.githubusercontent.com/ccdmb/predector/1.2.7/Dockerfile \
   --build-arg SIGNALP3=signalp-3.0.Linux.tar.Z \
   --build-arg SIGNALP4=signalp-4.1g.Linux.tar.gz \
   --build-arg SIGNALP5=signalp-5.0b.Linux.tar.gz \
-  --build-arg SIGNALP6=signalp-6.0g.fast.tar.gz \
+  --build-arg SIGNALP6=signalp-6.0h.fast.tar.gz \
   --build-arg TARGETP2=targetp-2.0.Linux.tar.gz \
-  --build-arg PHOBIUS=phobius101_linux.tar.gz \
+  --build-arg PHOBIUS=phobius101_linux.tgz \
   --build-arg TMHMM=tmhmm-2.0c.Linux.tar.gz \
   --build-arg DEEPLOC=deeploc-1.0.All.tar.gz \
   -t predector/predector:1.2.7 \
@@ -272,9 +272,9 @@ Modify the source tar archive filenames if necessary.
 export SIGNALP3=signalp-3.0.Linux.tar.Z
 export SIGNALP4=signalp-4.1g.Linux.tar.gz
 export SIGNALP5=signalp-5.0b.Linux.tar.gz
-export SIGNALP6=signalp-6.0g.fast.tar.gz
+export SIGNALP6=signalp-6.0h.fast.tar.gz
 export TARGETP2=targetp-2.0.Linux.tar.gz
-export PHOBIUS=phobius101_linux.tar.gz
+export PHOBIUS=phobius101_linux.tgz
 export TMHMM=tmhmm-2.0c.Linux.tar.gz
 export DEEPLOC=deeploc-1.0.All.tar.gz
 

@@ -60,9 +60,6 @@ There are a lot of columns, though generally you'll only be interested in a few 
 | `has_phibase_effector_match` | Boolean [0, 1] | Indicates whether the protein had a significant hit to one of the phibase phenotypes: Effector, Hypervirulence, or loss of pathogenicity |
 | `has_phibase_virulence_match` | Boolean [0, 1] | Indicating whether the protein had a significant hit with the phenotype "reduced virulence" |
 | `has_phibase_lethal_match` | Boolean [0, 1] | Indicating whether the protein had a significant hit with the phenotype "lethal" |
-| `pfam_ids` | List | A comma separated list of all Pfam HMM ids matched | You can find details on Pfam match entries at http://pfam.xfam.org (use the "Jump to" search boxes with this ID). Matches are sorted by evalue, so the first hit is the best.|
-| `pfam_names` | List | A comma separated list of all Pfam HMM names matched | Matches are sorted by evalue, so the first hit is the best. |
-| `has_pfam_virulence_match` | Boolean [0, 1] | Indicating whether the protein had a significant hit to one of the selected Pfam HMMs associated with virulence function | A list of virulence associated Pfam entries is here: https://github.com/ccdmb/predector/blob/master/data/pfam_targets.txt |
 | `dbcan_matches` | List | A comma separated list of all dbCAN matches | You can find details on CAZYme families at http://www.cazy.org/. For more on dbCAN specifically see here https://bcb.unl.edu/dbCAN2/. Matches are sorted by evalue, so the first hit is the best. |
 | `has_dbcan_virulence_match` | Boolean [0, 1] | Indicating whether the protein had a significant hit to one of the dbCAN domains associated with virulence function | A list of virulence associated dbCAN entries is here: https://github.com/ccdmb/predector/blob/master/data/dbcan_targets.txt |
 | `effectorp1` | Float | The raw EffectorP v1 prediction pseudo-probability | Values above 0.5 are considered to be effector predictions |
