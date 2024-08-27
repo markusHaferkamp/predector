@@ -20,7 +20,7 @@ mv ./* "${TARGET_DIR}"
 cd "${TARGET_DIR}"
 patch phobius.pl phobius.pl.patch
 chmod a+rx phobius.pl decodeanhmm.64bit decodeanhmm
-chmod a+r phobius.model phobius.options Q8TCT8 OPSD_SHEEP README LicenseAgreement.txt
+chmod a+r phobius.model phobius.options Q8TCT8 OPSD_SHEEP README
 # chmod -R a+r .
 
 #nb we delete WORKDIR using a trap command in register-base.sh

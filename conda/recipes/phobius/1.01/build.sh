@@ -3,10 +3,10 @@
 set -eux
 
 # Where can users download the source from?
-DOWNLOAD_URL=http://software.sbc.su.se/cgi-bin/request.cgi?project=phobius
+DOWNLOAD_URL=https://software.sbc.su.se/phobius.html
 
 # What is the expected source tarball named?
-TAR_FILE=phobius101_linux.tar.gz
+TAR_FILE=phobius101_linux.tgz
 
 # What is the main executable of the program? e.g. signalp
 EXE=phobius.pl
