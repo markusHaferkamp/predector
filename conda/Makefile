@@ -13,7 +13,7 @@ RTARGETS_VERSIONS=$(foreach rversion,$(RVERSIONS),$(addprefix r-$(rversion)/,$(R
 TARGETS=effectorp1/1.0 effectorp2/2.0 effectorp3/3.0 localizer/1.0.4 apoplastp/1.0.1 deepsig/0f1e1d9 \
 		signalp3/3.0b signalp4/4.1g signalp5/5.0b signalp6/6.0h \
 		targetp2/2.0 lasagne/0.2.dev1 deeploc/1.0 \
-		tmhmm/2.0c phobius/1.01 deeploc2/1.0.0 tmbed/1.0.0 $(RTARGETS_VERSIONS)
+		tmhmm/2.0c phobius/1.01 deeploc2/2.1.0 tmbed/1.0.0 $(RTARGETS_VERSIONS)
 
 
 r: $(addprefix targets/, $(RTARGETS_VERSIONS))
