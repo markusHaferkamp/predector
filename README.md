@@ -127,11 +127,11 @@ curl -s "https://raw.githubusercontent.com/ccdmb/predector/1.2.8-alpha/install.s
     -3 signalp-3.0.Linux.tar.Z \
     -4 signalp-4.1g.Linux.tar.gz \
     -5 signalp-5.0b.Linux.tar.gz \
-    -6 signalp-6.0g.fast.tar.gz \
+    -6 signalp-6.0h.fast.tar.gz \
     -t targetp-2.0.Linux.tar.gz \
     -d deeploc-1.0.All.tar.gz \
     -m tmhmm-2.0c.Linux.tar.gz \
-    -p phobius101_linux.tar.gz
+    -p phobius101_linux.tgz
 ```
 
 This will create the conda environment (named `predector`), or the docker (tagged `predector/predector:1.2.8-alpha`) or singularity (file `./predector.sif`) containers.
