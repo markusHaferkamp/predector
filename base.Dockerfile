@@ -1,7 +1,7 @@
 FROM mambaorg/micromamba:1.4-jammy
 
 ENV ENVIRONMENT=predector
-ENV VERSION=1.2.7
+ENV VERSION=1.2.8-alpha
 
 LABEL maintainer="darcy.ab.jones@gmail.com"
 LABEL description="Docker image containing all non-proprietary requirements for the predector pipeline"
