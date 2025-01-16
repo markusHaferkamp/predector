@@ -3,16 +3,16 @@
 set -eux
 
 # Where can users download the source from?
-DOWNLOAD_URL=https://software.sbc.su.se/phobius.html
+DOWNLOAD_URL=https://services.healthtech.dtu.dk/services/DeepLoc-2.0/9-Downloads.php#
 
 # What is the expected source tarball named?
-TAR_FILE=phobius101_linux.tgz
+TAR_FILE=deeploc-1.0.All.tar.gz
 
 # What is the main executable of the program? e.g. signalp
-EXE=phobius.pl
+EXE=deeploc2
 
-# What should be the executable name with a version or without extension e.g. signalp5
-VEXE=phobius
+# What should be the executable name with a version e.g. signalp5
+VEXE=deeploc2
 
 # Where is the actual file relative to the basedir in the share folder?
 # This will only need to be changed if your program folder uses a subdirectory under the target directory.
@@ -55,7 +55,11 @@ cp "${TARGET_DIR}/${PEXE}" "${TARGET_DIR}/placeholder.sh"
 chmod a+rx "${TARGET_DIR}/${PEXE}"
 chmod a+rx "${TARGET_DIR}/placeholder.sh"
 
-ln -s "${TARGET_DIR}/${PEXE}" "${PREFIX}/bin/${EXE}"
+#ln -s "${TARGET_DIR}/${PEXE}" "${PREFIX}/bin/${EXE}"
+#ln -s "${TARGET_DIR}/${PEXE}" "${PREFIX}/bin/${VEXE}"
+
+# This is necessary because some binaries hard code to the symlink filename.
+#ln -s "${TARGET_DIR}/${PEXE}" "${TARGET_DIR}/${PVEXE}"
 
 
 ## Setup the script that will actually install things for us.

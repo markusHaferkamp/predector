@@ -79,6 +79,28 @@ _nf_script_9f2a833e: 9: unable to resolve class download_pfam_dat
 Please update Nextflow to a more recent version (>21) to resolve this issue.
 
 
+### On a network file system receive an error `open: can't stat file`.
+
+This is usually caused by a delay in how network file systems sync between many clients.
+If something is writing or reading files very quickly a program can have problems retrieving a file.
+If the server hasn't finished uploading and placing the file, then it can tell your program that the file doesn't exist.
+In SignalP3 this can potentially even cause segfaults (see: https://github.com/ccdmb/predector/issues/92#issuecomment-2034991440).
+
+A solution to this is to use a local filesystem to do the actual work.
+On an HPC you'll usually have some space in `/tmp` to do some work, and you can tell nextflow to stage files there with the following config.
+
+```
+process {
+  scratch = '/tmp'
+}
+```
+
+If you save this to a file, say "my_scratch.config", you can then supply that as an extra argument to nextflow.
+E.g. `nextflow run -c my_scratch.config -profile test,docker ccdmb/predector`
+
+Thanks to @ibebio for pointing us towards this problem.
+
+
 ### Running/setting up conda environment: `loadable library and perl binaries are mismatched (got handshake key 0xdb80080, needed 0xde00080)`
 
 This will usually happen if the operating system you're running on has some perl libraries in the search path for a different version of perl.

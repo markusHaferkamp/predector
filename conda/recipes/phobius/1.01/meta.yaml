@@ -5,7 +5,7 @@ package:
   version: {{ version }}
 
 build:
-  number: 4
+  number: 5
   skip: True  # [not linux]
 
 requirements:
@@ -20,7 +20,7 @@ test:
     - 'phobius-register || [ $? == 1 ]'
 
 about:
-  home: http://phobius.sbc.su.se/
+  home: https://phobius.sbc.su.se/data.html
   license: Proprietary
 
 extra:

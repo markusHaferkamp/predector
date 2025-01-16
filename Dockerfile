@@ -1,4 +1,4 @@
-ARG VERSION=1.2.7
+ARG VERSION=1.2.8-alpha
 FROM "predector/predector-base:${VERSION}"
 
 LABEL description="Docker image containing all requirements for the predector pipeline"
@@ -14,9 +14,11 @@ ARG TMHMM
 
 RUN mkdir -p /tmp/onbuild
 
+WORKDIR /tmp/onbuild
 # Anything with ":-" here should be able to handle not being installed
-COPY "${SIGNALP3}" \
-  "${SIGNALP4}" \
+COPY "${SIGNALP3}" /tmp/onbuild
+
+COPY "${SIGNALP4}" \
   "${SIGNALP5}" \
   ${SIGNALP6:-} \
   "${TARGETP2}" \

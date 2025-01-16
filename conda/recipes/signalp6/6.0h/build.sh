@@ -3,16 +3,16 @@
 set -eux
 
 # Where can users download the source from?
-DOWNLOAD_URL=https://software.sbc.su.se/phobius.html
+DOWNLOAD_URL=https://services.healthtech.dtu.dk/services/SignalP-${PKG_VERSION}/9-Downloads.php#
 
 # What is the expected source tarball named?
-TAR_FILE=phobius101_linux.tgz
+TAR_FILE=signalp-6.0h.fast.tar.gz
 
 # What is the main executable of the program? e.g. signalp
-EXE=phobius.pl
+EXE=signalp
 
-# What should be the executable name with a version or without extension e.g. signalp5
-VEXE=phobius
+# What should be the executable name with a version e.g. signalp5
+VEXE=signalp6
 
 # Where is the actual file relative to the basedir in the share folder?
 # This will only need to be changed if your program folder uses a subdirectory under the target directory.
@@ -32,6 +32,7 @@ mkdir -p "$(dirname "${TARGET_DIR}/${PEXE}")"
 mkdir -p "${PREFIX}/bin"
 
 find "${RECIPE_DIR}" -name '*.patch' -exec cp {} "${TARGET_DIR}" \;
+find "${RECIPE_DIR}" -name '*.fasta' -exec cp {} "${TARGET_DIR}" \;
 
 INSTALL_COMPLETE_MESSAGE="\
 ${PKG_NAME} ${PKG_VERSION} has not been installed yet.
@@ -55,7 +56,11 @@ cp "${TARGET_DIR}/${PEXE}" "${TARGET_DIR}/placeholder.sh"
 chmod a+rx "${TARGET_DIR}/${PEXE}"
 chmod a+rx "${TARGET_DIR}/placeholder.sh"
 
-ln -s "${TARGET_DIR}/${PEXE}" "${PREFIX}/bin/${EXE}"
+ln -sf "${TARGET_DIR}/${PEXE}" "${PREFIX}/bin/${EXE}"
+ln -sf "${TARGET_DIR}/${PEXE}" "${PREFIX}/bin/${VEXE}"
+
+# This is necessary because some binaries hard code to the symlink filename.
+ln -sf "${TARGET_DIR}/${PEXE}" "${TARGET_DIR}/${PVEXE}"
 
 
 ## Setup the script that will actually install things for us.
@@ -79,7 +84,7 @@ cat "${RECIPE_DIR}/register.sh" >> "${REGISTER_FILE}"
 echo 'touch ${TARGET_DIR}/completed' >> "${REGISTER_FILE}"
 cat "${RECIPE_DIR}/register-test.sh" >> "${REGISTER_FILE}"
 chmod a+rx "${REGISTER_FILE}"
-ln -s "${REGISTER_FILE}" "${PREFIX}/bin/${VEXE}-register"
+ln -sf "${REGISTER_FILE}" "${PREFIX}/bin/${VEXE}-register"
 
 
 ## Setup the script that removes the things we installed
